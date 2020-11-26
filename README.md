@@ -4,6 +4,7 @@
 
 ### Usage: 
 **Matlab**: To use, type in the terminal CBCR(input, curricula, alpha, gamma_1, gamma_2, learning_rate, max_iter, final_iter)
+
 **Parameters**
 - input: A string for the path of the input file.
 - curricula: Integer. The number of curricula to be trained.
