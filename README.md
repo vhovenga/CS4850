@@ -13,7 +13,7 @@
 - gamma_2: Number between 0 and 1. The scaling factor for the second moment estimator in the adam optimizer (.999 is recommended). 
 - learning_rate: Learning rate for the optimizer (values less than .15 are recommended).
 - max_iter: The maximumum iterations for training on the individual curricula.
-- final_iter: The maximum iterationos for training on the whole data set after completion of curriculum training. 
+- final_iter: The maximum iterations for training on the whole data set after completion of curriculum training. 
 
 ### Input:
 There are two possible input formats.
