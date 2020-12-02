@@ -1,0 +1,6 @@
+Input file: regular25.txt
+The optimal structure is: regular25_CONVERT_FACTOR=1.9N=.pdb
+Convert factor: 1.900000
+AVG RMSE: 3.583881
+AVG Spearman correlation Dist vs. Reconstructed Dist: 0.990676
+AVG Pearson correlation Dist vs. Reconstructed Dist: 0.930857

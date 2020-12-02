@@ -1,0 +1,1 @@
+The representative structure is regular25_CONVERT_FACTOR=1.7N=1.pdb

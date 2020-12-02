@@ -1,0 +1,1 @@
+The representative structure is regular90_CONVERT_FACTOR=0.7N=1.pdb

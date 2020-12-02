@@ -1,0 +1,6 @@
+Input file: regular90.txt
+The optimal structure is: regular90_CONVERT_FACTOR=0.7N=.pdb
+Convert factor: 0.700000
+AVG RMSE: 4.289590
+AVG Spearman correlation Dist vs. Reconstructed Dist: 0.752923
+AVG Pearson correlation Dist vs. Reconstructed Dist: 0.709524

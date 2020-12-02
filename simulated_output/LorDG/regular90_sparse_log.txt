@@ -1,0 +1,6 @@
+Input file: input/regular90_sparse.txt
+Convert factor: 0.7
+Learning rate: 1.0
+AVG RMSE: 64.87306973341805
+AVG Spearman correlation IFs vs. Reconstructed Dist: -0.7033533817716128
+AVG Spearman correlation WishDist vs. Reconstructed Dist: 0.7033533817716128

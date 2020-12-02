@@ -1,0 +1,6 @@
+Input file: regular70.txt
+The optimal structure is: regular70_CONVERT_FACTOR=1.3N=.pdb
+Convert factor: 1.300000
+AVG RMSE: 5.361247
+AVG Spearman correlation Dist vs. Reconstructed Dist: 0.860047
+AVG Pearson correlation Dist vs. Reconstructed Dist: 0.775300
