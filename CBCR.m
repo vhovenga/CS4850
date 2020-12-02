@@ -1,5 +1,5 @@
 
-function CBCR(input, curricula, alpha, gamma_1, gamma_2, learning_rate, max_iter, final_iter)
+function CBCR(input, curricula_number, learning_rate, max_iter, final_iter)
 disp ('============================================');
 disp ('Data = Hi-C data  ');
 disp ('===========================================');
@@ -15,13 +15,13 @@ end
 % 3DMax Variables
 %--------------------------------------------------------------------------
 
-smooth_factor = 1e-6; % for numerical stability
+smooth_factor = 1e-4; % for numerical stability
 
-alpha = alpha; % Scaling factor for trained data.
+alpha = .5; % Initial scaling factor for trained data.
 beta = 1-alpha; % Scaling factor for untrained data. 
-gamma_1 = gamma_1; % Decay rate for first moment estimate in adam. 
-gamma_2 = gamma_2; % Decay rate for second moment estimate in adam.
-NUMBER_OF_CURRICULA = curricula;
+gamma_1 = .9; % Decay rate for first moment estimate in adam. 
+gamma_2 = .999; % Decay rate for second moment estimate in adam.
+NUMBER_OF_CURRICULA = curricula_number;
 
 NEAR_ZERO =0.00001; % used to signify a boundary of convergence
 
@@ -55,9 +55,9 @@ ReadInput; % Load the contact file
 % specify the alpha
 
 
-for CONVERT_FACTOR = .1:0.1:2
+for e = 1:10
 
-
+        CONVERT_FACTOR = .7;
         %-------------------------
         Convert2Distance;
         %-------------------------
@@ -81,6 +81,8 @@ for CONVERT_FACTOR = .1:0.1:2
         prev_str = []; % Vector of xyz data for all trained structures from each previous curriculum. 
         
         for l = 1:(1+NUMBER_OF_CURRICULA)
+            alpha = .5;
+            beta = .5; 
             %disp ('=============================================================================');
             %fprintf('Creating structure at CONVERT_FACTOR = %f and structure = %d\n', CONVERT_FACTOR,l);
             %disp ('=============================================================================');
@@ -133,6 +135,11 @@ CONVERT_FACTOR = TS(index,1);
 l = TS(index,2);
 pl =  P_CORR(index);
 rep_rms = RMSD(index);
+
+avg_pears = mean(P_CORR);
+avg_spear = mean(Corr);
+avg_rms = mean(RMSD);
+
 % save scores to file
 f_scores =strcat(path,num2str(new_name),'_Finalscores.txt');
 %dlmwrite(f_scores,sprintf('CONVERT_FACTOR\tStructure Number\tSpearman Correlation'));
@@ -152,22 +159,22 @@ readme =strcat(path,num2str(new_name),'_readme.txt');
 fprintf('\n===============================================\n');
 fprintf('Input file: %s\n', input)
 fprintf('Convert factor: %f\n', CONVERT_FACTOR);  
-fprintf('AVG RMSE: %f\n', rep_rms)
-fprintf('AVG Spearman correlation Dist vs. Reconstructed Dist: %f\n', val);  
-fprintf('AVG Pearson correlation Dist vs. Reconstructed Dist: %f\n', pl);  
+fprintf('AVG RMSE: %f\n', avg_rms)
+fprintf('AVG Spearman correlation Dist vs. Reconstructed Dist: %f\n', avg_spear);  
+fprintf('AVG Pearson correlation Dist vs. Reconstructed Dist: %f\n', avg_pears);  
 %fid = fopen(readme,'wt');
 %msg = ['The asdfadfi structure is ',final_name]; 
 %fprintf(fid,msg);
 %fclose(fid);
 
-out_log = strcat(path, num2str(new_name),'_output.log');
-log = fopen(out_log,'wt');
+averages = strcat(path, num2str(new_name),'_averages.log');
+log = fopen(averages,'wt');
 fprintf(log,'Input file: %s\n', input);
 fprintf(log, 'The optimal structure is: %s\n', final_name);
 fprintf(log,'Convert factor: %f\n', CONVERT_FACTOR);  
-fprintf(log,'AVG RMSE: %f\n', rep_rms);
-fprintf(log,'AVG Spearman correlation Dist vs. Reconstructed Dist: %f\n', val);  
-fprintf(log,'AVG Pearson correlation Dist vs. Reconstructed Dist: %f\n', pl); 
+fprintf(log,'AVG RMSE: %f\n', avg_rms);
+fprintf(log,'AVG Spearman correlation Dist vs. Reconstructed Dist: %f\n', avg_spear);  
+fprintf(log,'AVG Pearson correlation Dist vs. Reconstructed Dist: %f\n', avg_pears); 
 fclose(log);
 end 
 

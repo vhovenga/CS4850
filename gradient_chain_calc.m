@@ -57,4 +57,7 @@ v = sum_trained + sum_untrained;
   % Find dw_dv
   %=========================
   dw_dv = 1/(2*sqrt((r+s)*v));
+  
+ 
+  
  

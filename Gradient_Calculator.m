@@ -9,6 +9,12 @@ trained_val = 0;
 % Calculate the chain rule derivative for the gradient calculation
 gradient_chain_calc;
 
+% Derive wrt alpha and beta
+
+% change_alpha = -r*log(w) -  (sum_trained*prop_vec(l)*(alpha * r + beta * s))/(2*(alpha*sum_trained*prop_vec(l) + beta*sum_untrained*(1-prop_vec(l))));
+% change_beta = -s*log(w) -   (sum_untrained*(1-prop_vec(l))*(alpha*r+beta*s))/(2*(alpha*sum_trained*prop_vec(l) + beta*sum_untrained*(1-prop_vec(l))));
+change_alpha = - log(((alpha*sum_trained*prop_vec(l) + sum_untrained*(prop_vec(l) - 1)*(alpha - 1))/(r + s))^(1/2))*(r - s) - ((sum_untrained*(prop_vec(l) - 1) + sum_trained*prop_vec(l))*(alpha*r - s*(alpha - 1)))/(2*(alpha*sum_trained*prop_vec(l) + sum_untrained*(prop_vec(l) - 1)*(alpha - 1)));
+%% Derive wrt x,y,z coordinates
 % Loop through new curriculum. 
  for k= 1:length(C{l})
       i = data(k,1);    j = data(k,2);    IF = data(k,3);  dist = data(k,4);

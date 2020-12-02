@@ -36,6 +36,7 @@ fprintf('\nSpearman correlation = %f\n',SpearmanRHO);
 fprintf('Pearson correlation = %f\n',PearsonRHO);
 
 fprintf('RMSE =%f\n',rmse);
+fprintf('Number =%f\n',e);
   
  
  
